@@ -1,0 +1,13 @@
+package com.java.ds;
+
+public class TreeSet {
+	public static void main(String[] args) {
+		java.util.TreeSet<String> ts = new java.util.TreeSet<String>();
+		ts.add("One");
+		ts.add("five");
+		ts.add("two");
+		ts.add("three");
+		System.out.println(ts);
+	}
+
+}

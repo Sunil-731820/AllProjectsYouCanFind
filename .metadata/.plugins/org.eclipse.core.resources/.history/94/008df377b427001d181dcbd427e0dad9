@@ -1,0 +1,27 @@
+package com.java.search.Serilizable;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+public class SortByIdDataEmploy {
+	public static void main(String[] args) {
+		
+		ArrayList<Employ> empdataList = new ArrayList<Employ>();
+		empdataList.add(new Employ(1, "Sunil", "2010-01-02", "2022-02-03"));
+		empdataList.add(new Employ(20, "Sunil", "2010-01-02", "2022-02-03"));
+		empdataList.add(new Employ(21, "Sunil", "2010-01-02", "2022-02-03"));
+		empdataList.add(new Employ(31, "Sunil", "2010-01-02", "2022-02-03"));
+		
+		Iterator<Employ> itr = empdataList.iterator();
+		while(itr.hasNext()) {
+			System.out.println(itr.next());
+		}
+	}
+
+}

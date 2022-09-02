@@ -1,0 +1,7 @@
+127.0.0.1 - - [10/May/2022:23:10:56 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [10/May/2022:23:10:56 +0530] "GET /EmployProjectsUsingJSP/AgentTable.jsp HTTP/1.1" 200 2283
+0:0:0:0:0:0:0:1 - - [10/May/2022:23:10:57 +0530] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [10/May/2022:23:10:58 +0530] "GET /EmployProjectsUsingJSP/AddAgent.jsp HTTP/1.1" 200 729
+0:0:0:0:0:0:0:1 - - [10/May/2022:23:11:14 +0530] "GET /EmployProjectsUsingJSP/AddAgent.jsp?agentId=21&Name=amaresh&City=Kanpur&GENDER=MALE&MaritalStatus=1&Premium=121212 HTTP/1.1" 200 2552
+0:0:0:0:0:0:0:1 - - [10/May/2022:23:11:16 +0530] "GET /EmployProjectsUsingJSP/DeleteAgent.jsp?agentId=21 HTTP/1.1" 200 2283
+0:0:0:0:0:0:0:1 - - [10/May/2022:23:11:18 +0530] "GET /EmployProjectsUsingJSP/DeleteAgent.jsp?agentId=21 HTTP/1.1" 200 2283

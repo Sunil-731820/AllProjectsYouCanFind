@@ -1,0 +1,5 @@
+127.0.0.1 - - [23/Aug/2022:15:50:30 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [23/Aug/2022:15:50:31 +0530] "GET /HealthCareProjects/AdminHome.jsp HTTP/1.1" 200 7428
+0:0:0:0:0:0:0:1 - - [23/Aug/2022:15:50:32 +0530] "GET /HealthCareProjects/img/2855.jpeg HTTP/1.1" 200 29663
+0:0:0:0:0:0:0:1 - - [23/Aug/2022:15:50:32 +0530] "GET /HealthCareProjects/img/Medical.jpg HTTP/1.1" 200 195440
+0:0:0:0:0:0:0:1 - - [23/Aug/2022:15:50:32 +0530] "GET /favicon.ico HTTP/1.1" 404 762

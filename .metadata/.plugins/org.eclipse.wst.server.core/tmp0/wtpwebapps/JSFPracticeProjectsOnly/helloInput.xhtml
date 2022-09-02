@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:sql_rt="http://java.sun.com/jstl/sql_rt">
+      
+      <h:head>
+      
+      	<script>
+			function hello(){
+				alert("hello this is JSF calling the jS Files");
+				}
+			
+
+      	</script>
+      
+      </h:head>
+      
+      <h:body>
+      
+      	<h:form>
+      		<h:inputText value="#{helloBean.studentName}" />
+      		<h:commandButton value="submit"/>
+      	</h:form>
+      	
+      	Result is : 
+	<h:outputText value="#{helloBean.studentName}" />
+	
+	<h:commandButton onclick="hello()">Click </h:commandButton>
+      
+      
+      </h:body>
+      
+</html>
+      

@@ -1,0 +1,12 @@
+package com.java.ds;
+
+public class LinkedHashMap {
+	public static void main(String[] args) {
+		java.util.LinkedHashMap<Integer, String> hs1 = new java.util.LinkedHashMap<Integer, String>();
+		hs1.put(1, "One");
+		hs1.put(2, "two");
+		hs1.put(3, "Three");
+		System.out.println(hs1);
+	}
+
+}

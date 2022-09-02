@@ -1,0 +1,10 @@
+package com.java.ds;
+
+public class TreeMap {
+	public static void main(String[] args) {
+		java.util.TreeMap<Integer,String> tm = new java.util.TreeMap<Integer, String>();
+		tm.put(1, "Mango");
+		tm.put(2, "banana");
+		System.out.println(tm);
+	}
+}

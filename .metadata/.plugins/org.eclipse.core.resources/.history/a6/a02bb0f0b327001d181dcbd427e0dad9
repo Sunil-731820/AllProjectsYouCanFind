@@ -1,0 +1,37 @@
+package com.java.search.Serilizable;
+
+import java.util.Comparator;
+
+class Employ{
+	int id;
+	String name;
+	String startDate;
+	String endDate;
+	
+	public Employ(int id, String name, String startDate, String endDate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+	
+	
+}
+
+public class SortByIdComparator implements Comparator<Employ> {
+
+	@Override
+	public int compare(Employ emp1, Employ emp2) {
+		if(emp1.id==emp2.id) {
+			return 0;
+		}else if(emp1.id>emp2.id) {
+		return 1;	
+		}else {
+			return -1;
+		}
+	
+	}
+	
+
+}

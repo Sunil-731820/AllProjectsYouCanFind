@@ -1,0 +1,394 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Convert Excel to HTML Table using JavaScript</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="tabs_style.css">
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <style>
+        .accordion {
+          background-color: #eee;
+          color: #444;
+          cursor: pointer;
+          padding: 18px;
+          width: 100%;
+          border: none;
+          text-align: left;
+          outline: none;
+          font-size: 15px;
+          transition: 0.4s;
+        }
+        
+        .active, .accordion:hover {
+          background-color: #ccc; 
+        }
+        
+        .panel {
+          padding: 0 18px;
+          display: none;
+          background-color: white;
+          overflow: hidden;
+        }
+        </style>
+</head>
+<body>
+    <div class="container">
+    	<h1 class="text-center mt-4 mb-4">E T S</h1>
+        <h2 class="text-center GHS">GHS MMIS TEAM DETAILS</h2>
+        
+    	<div class="card" id="file" style="display:block;">
+    		<div class="card-header"><b>Select Excel File</b></div>
+    		<div class="card-body">
+    			
+                <input type="file" id="excel_file" />
+    		</div>
+        
+    	</div>
+        
+        <div>
+                <p>Hello Infintie</p>
+        </div>
+
+        <div class="search" >
+            <b>Individual Profile</b>
+            <input type="text" id="searchData" />
+            <input type="button" id="btn" value="Search" onclick="search()"/>
+        </div>
+        
+
+        <div class="projectDetails" id="projectDetails" style="display:block;">
+            <form>
+                <b>Project Details</b>
+                <select  id="project" onchange="projectDetails()">
+                    <option>----Select Project-----</option>
+                    <option value="NH O&M">NH O&M</option>
+                    <option value="AK O&M">AK O&M</option>
+                    <option value="Verizon, IBM, Zyter (COE)">Verizon/IBM/Zyter(COE)</option>
+                    <option value="ND projects">ND Projects</option>
+                    <option value="Others">Others</option>
+                    <option value="MMIS (Mainframe)">MMIS Mainframe</option>
+                </select>
+            </form>
+        </div>
+        
+        
+    </div>
+    <div id="excel_data" class="mt-5"></div>
+    <button id="but1" class="accordion" onclick="totalExperience()" style="display:none;">Total Experience</button>
+<div class="panel" >
+    <div id="excel_data1" class="mt-5"  ></div>
+</div>
+
+<button id="but2" class="accordion" onclick="functionalExperience()" style="display: none;">Functional Experience</button>
+<div class="panel1">
+    <div id="excel_data2" class="mt-5" ></div>
+</div>
+
+</body>
+</html>
+
+<script>
+
+  
+const excel_file = document.getElementById('excel_file');
+
+window.sheet_data=null;
+window.sheet_data1=null;
+window.sheet_data2=null;
+window.sheet_data3=null;
+window.empId=0;
+
+excel_file.addEventListener('change', (event) => {
+
+    if(!['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'].includes(event.target.files[0].type))
+    {
+        document.getElementById('excel_data').innerHTML = '<div class="alert alert-danger">Only .xlsx or .xls file format are allowed</div>';
+
+        excel_file.value = '';
+
+        return false;
+    }
+
+    var reader = new FileReader();
+
+    reader.readAsArrayBuffer(event.target.files[0]);
+
+    reader.onload = function(event){
+
+        var data = new Uint8Array(reader.result);
+		
+		localStorage.setItem("var",data);
+
+        var work_book = XLSX.read(data, {type:'array'});
+
+        var sheet_name = work_book.SheetNames;
+
+        console.log("sheet_name="+sheet_name);
+
+        
+
+         window.sheet_data = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[0]], {header:1});
+         window.sheet_data1= XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[1]], {header:1});
+         window.sheet_data2=XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[2]], {header:1});
+         window.sheet_data3=XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[3]], {header:1});
+    
+         document.getElementById("file").style.display="none";
+         document.getElementById("projectDetails").style.display="none";
+		console.log("sheet name"+sheet_name[0]);
+        console.log("sheet name 1"+sheet_name[1]);
+        console.log("sheet name 1"+sheet_name[2]);
+        console.log("sheet name 1"+sheet_name[3]);
+
+       
+
+        excel_file.value = '';
+
+    }
+
+});
+
+function search(){
+
+		 window.empId=document.getElementById('searchData').value;
+        document.getElementById("but1").style.display="block";
+		document.getElementById("but2").style.display="block";
+ if(sheet_data.length > 0)
+        {
+		    console.log('sree');
+            var table_output = '<table class="table table-striped table-bordered">';
+
+            for(var row = 0; row < sheet_data.length; row++)
+            {
+
+                table_output += '<tr>';
+				
+				
+
+                for(var cell = 0; cell < sheet_data[row].length; cell++)
+                {
+
+                    if(row == 0)
+                    {
+
+                        table_output += '<th>'+sheet_data[row][cell]+'</th>';
+
+                    }
+                    else
+                    {
+
+                        
+						if(sheet_data[row][1]== empId){
+							console.log('Sir');
+							table_output +='<td>'+sheet_data[row][cell]+'</td>';
+						}
+                        else{
+                            if(empId.length<1){
+                                table_output +='<td>'+sheet_data[row][cell]+'</td>'; 
+                            }
+                        }
+                        
+						
+
+                    }
+
+                }
+
+                table_output += '</tr>';
+
+            }
+
+            table_output += '</table>';
+
+            document.getElementById('excel_data').innerHTML = table_output;
+        }
+
+        excel_file.value = '';
+		
+
+    }
+   
+    function animation(){
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        console.log("entered animation");
+
+            for (i = 0; i < acc.length; i++) {
+                console.log("accordian lenght"+acc.length);
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                    panel1.style.display = "block";
+                    } else {
+                    panel.style.display = "block";
+                    }
+                });
+                }
+    }
+    function totalExperience(){
+
+        console.log('entered totalExperience');
+        animation();
+        if(sheet_data1.length > 0)
+        {
+		    
+            var table_output = '<table class="table table-striped table-bordered">';
+
+            for(var row = 0; row < sheet_data1.length; row++)
+            {
+
+                table_output += '<tr>';
+				
+				
+
+                for(var cell = 0; cell < sheet_data1[row].length; cell++)
+                {
+
+                    if(row == 0)
+                    {
+
+                        table_output += '<th>'+sheet_data1[row][cell]+'</th>';
+
+                    }
+                    else
+                    {
+
+                        
+						if(sheet_data1[row][0]== empId){
+							console.log('total Experience');
+							table_output +='<td>'+sheet_data1[row][cell]+'</td>';
+                            
+						}
+                        
+						
+
+                    }
+
+                }
+
+                table_output += '</tr>';
+
+            }
+
+            table_output += '</table>';
+
+            document.getElementById('excel_data1').innerHTML = table_output;
+        }
+
+        excel_file.value = '';
+    }
+
+    function functionalExperience(){
+        console.log('entered functionalExperience');
+        animation();
+        if(sheet_data2.length > 0)
+        {
+		    
+            var table_output = '<table class="table table-striped table-bordered">';
+
+            for(var row = 0; row < sheet_data2.length; row++)
+            {
+
+                table_output += '<tr>';
+				
+				
+
+                for(var cell = 0; cell < sheet_data2[row].length; cell++)
+                {
+
+                    if(row == 0)
+                    {
+
+                        table_output += '<th>'+sheet_data2[row][cell]+'</th>';
+
+                    }
+                    else
+                    {
+
+                        
+						if(sheet_data2[row][0]== empId){
+							console.log('total Experience');
+							table_output +='<td>'+sheet_data2[row][cell]+'</td>';
+                            
+						}
+                        
+						
+
+                    }
+
+                }
+
+                table_output += '</tr>';
+
+            }
+
+            table_output += '</table>';
+
+            document.getElementById('excel_data2').innerHTML = table_output;
+        }
+
+        excel_file.value = '';
+    }
+
+    function projectDetails(){
+        document.getElementById("but1").style.display="none";
+        document.getElementById("but2").style.display="none";
+        var project=document.getElementById("project");
+        var project1=project.options[project.selectedIndex].value;
+        console.log("Project"+project)
+        console.log("Project1"+project1);
+        if(sheet_data1.length > 0)
+        {
+		    
+            var table_output = '<table class="table table-striped table-bordered">';
+
+            for(var row = 0; row < sheet_data1.length; row++)
+            {
+
+                table_output += '<tr>';
+				
+				
+
+                for(var cell = 0; cell < sheet_data1[row].length; cell++)
+                {
+
+                    if(row == 0)
+                    {
+
+                        table_output += '<th>'+sheet_data1[row][cell]+'</th>';
+
+                    }
+                    else
+                    {
+
+                        
+						if(sheet_data1[row][2]== project1){
+							console.log('total Experience');
+							table_output +='<td>'+sheet_data1[row][cell]+'</td>';
+						}
+                        
+						
+
+                    }
+
+                }
+
+                table_output += '</tr>';
+
+            }
+
+            table_output += '</table>';
+
+            document.getElementById('excel_data').innerHTML = table_output;
+        }
+
+        excel_file.value = '';
+
+    }
+    
+</script>

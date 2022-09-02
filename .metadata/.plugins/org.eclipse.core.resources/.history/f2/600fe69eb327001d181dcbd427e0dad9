@@ -1,0 +1,20 @@
+package com.java.search.Serilizable;
+
+public class Employ {
+	int id;
+	String name;
+	String startDate;
+	String endDate;
+	
+	
+	public Employ(int id, String name, String startDate, String endDate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+	
+	
+
+}

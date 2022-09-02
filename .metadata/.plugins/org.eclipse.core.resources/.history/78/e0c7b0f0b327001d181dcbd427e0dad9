@@ -1,0 +1,21 @@
+package com.java.search.Serilizable;
+
+import java.util.Comparator;
+
+
+public class SortByIdComparator implements Comparator<Employ> {
+
+	@Override
+	public int compare(Employ emp1, Employ emp2) {
+		if(emp1.id==emp2.id) {
+			return 0;
+		}else if(emp1.id>emp2.id) {
+		return 1;	
+		}else {
+			return -1;
+		}
+	
+	}
+	
+
+}

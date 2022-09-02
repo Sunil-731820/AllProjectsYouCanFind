@@ -1,0 +1,33 @@
+package com.java.search;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+public class AnotherTryOn29August {
+	public static void main(String[] args) {
+		System.out.println("Another one more time for this sorting data ");
+		String filePath = "C:\\Users\\sunilg\\Desktop\\data.txt";
+
+		ArrayList<String> csvValues = new ArrayList<String>();
+		try{
+
+		BufferedReader br = new BufferedReader( new FileReader(filePath));
+		String strLine = "";
+		StringTokenizer str = null;
+
+		while( (strLine = br.readLine()) != null){
+		str = new StringTokenizer(strLine, ",");
+
+		while(str.hasMoreTokens())
+		csvValues.add(str.nextToken());
+		}
+
+		}catch(Exception e){
+		System.out.println("Exception while reading csv file: " + e);
+	}
+
+  }
+}
+ 

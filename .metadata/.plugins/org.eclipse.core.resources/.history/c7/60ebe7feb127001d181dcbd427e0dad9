@@ -1,0 +1,30 @@
+package com.java.search.Serilizable;
+
+import java.util.Date;
+
+public class Employ  implements Comparable<Employ>{
+	
+	int id;
+	String name;
+	String startDate;
+	String endDate;
+	public Employ(int id, String name, String startDate, String endDate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+	@Override
+	public int compareTo(Employ empId) {
+		// TODO Auto-generated method stub
+		if(id==empId.id) {
+			return 0;
+		}
+		return -1;
+	}
+	
+	
+	
+
+}
